@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./icofont/icofont.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <main>
+        <!--  -->
+        <div class="advert"><img src="./image mover.gif" alt=""></div>
+        <!--  -->
+
+        <!-- Nav Bar -->
+        <nav>
+            <img src="./ajebo.png" alt="">
+            <button class="search">
+                <input type="text">
+                <i class="icofont-search"></i>
+            </button>
+            <button class="account">
+                <i class="icofont-user"></i>
+                My Account
+            </button>
+            <button class="cart">
+                <i class="icofont-cart"></i>
+                My Cart
+            </button>
+        </nav>
+        <div class="holder">
+            <div class="side-nav">
+                <button class="">Men's  Clothing</button>
+                <button class="">Women's  Clothing</button>
+                <button class="">Jewelery</button>
+                <button class="">Electronics</button>
+            </div>
+            <div id="screen" class="screen"></div> 
+            <div class="adds"></div> 
+        </div>
+    </main>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+<script>
+    fetch('https://fakestoreapi.com/products/')
+        .then(res => res.json())
+
+        .then(json => {
+            console.log(json)
+            for (let index = 0; index < json.length; index++) {
+                const element = json[index];
+                document.getElementById("screen").innerHTML += `<div class="content">
+                <div class="image"><img src="${element.image}" alt=""></div>
+                <div class="category">${element.category}</div>
+                <div class="title">${element.title}</div>
+                <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                <div class="price">$${element.price}</div>
+            
+        </div>`
+            }
+        })
+
+</script>

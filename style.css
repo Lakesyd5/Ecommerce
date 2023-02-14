@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* background-color: whitesmoke; */
+}
+
+main {
+    background-color: whitesmoke;
+}
+
+.advert {
+    text-align: center;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: black;
+    padding: 3px 10px;
+    width: 100%;
+} 
+
+nav img {
+    margin-right: 35px;
+}
+
+.search {
+   display: flex;
+   align-items: center;
+   justify-content: center; 
+   background-color: white;
+   border-radius: 20px;
+   padding: 3px 8px;
+   border: 1.5px solid rgb(93, 6, 42);
+   margin-right: 35px;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    width: 400px;
+    
+}
+
+.search i {
+    margin-left: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    /* color: white; */
+    /* background-color: tomato; */
+}
+
+.account {
+    border: 1px solid silver;
+    padding: 10px 15px;
+    margin-right: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.account i {
+    font-size: 19px;
+    color: white;
+}
+
+.account:hover {
+    border-color: red;
+}
+
+.cart {
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.cart i {
+    font-size: 23px;
+    color: green;
+    /* font-weight: 700; */
+} 
+
+.cart:hover {
+    background-color: rgb(205, 31, 0);
+}
+
+.content {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 10px;
+    box-shadow: 5px 5px 8px grey;
+    background-color: white;
+}
+
+.content:hover {
+    transform: translate(-5px, 10px);
+}
+
+.content img {
+    height: 120px;
+    width: 95px;
+} 
+
+.image {
+    text-align: center;
+}
+
+.content .title {
+    /* width: 200px; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.content .price {
+    font-weight: 600;
+    font-size: 16px;
+    color: green;
+}
+
+.content .category {
+    color: gray;
+    font-size: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.content .rating {
+    background-color: rgb(173, 109, 20);
+    color: white;
+    width: fit-content;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+.screen {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    margin-left: 30px;
+}
+
+.holder {
+    display: flex;
+    padding: 0 40px;
+}
+
+.side-nav {
+    position: sticky;
+    top: 75px;
+    margin-top: 13px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background-color: rgb(162, 157, 157);;
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px grey;
+}
+
+.side-nav button {
+    display: block;
+    margin-bottom: 10px;
+    border: none;
+    background-color: rgb(244, 239, 239);
+    /* color: white; */
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-weight: 700; */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    
+}
