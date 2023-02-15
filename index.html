@@ -34,15 +34,24 @@
                 My Cart
             </button>
         </nav>
+        <!--  -->
+
+        <!-- Product & Side-Nav Page -->
         <div class="holder">
-            <div class="side-nav">
-                <button class="">Men's  Clothing</button>
-                <button class="">Women's  Clothing</button>
-                <button class="">Jewelery</button>
-                <button class="">Electronics</button>
+            <div id="side_nav" class="side-nav">
+                <button class="" onclick="mens()">Men's Clothing</button>
+                <button class="" onclick="women()">Women's Clothing</button>
+                <button class="" onclick="jewelery()">Jewelery</button>
+                <button class="" onclick="electronics()">Electronics</button>
             </div>
-            <div id="screen" class="screen"></div> 
-            <div class="adds"></div> 
+            <div id="" class="">
+                <div id="screen" class="screen"></div>
+                <div id="men" class="men"> <p></p></div>
+                <div id="women" class="women"></div>
+                <div id="jewelery" class="jewelery"></div>
+                <div id="electronics" class="electronics"></div>
+            </div>
+            <div class="adds"></div>
         </div>
     </main>
 </body>
@@ -60,6 +69,8 @@
             console.log(json)
             for (let index = 0; index < json.length; index++) {
                 const element = json[index];
+                let categories = element.category;
+                console.log(categories);
                 document.getElementById("screen").innerHTML += `<div class="content">
                 <div class="image"><img src="${element.image}" alt=""></div>
                 <div class="category">${element.category}</div>
@@ -70,5 +81,118 @@
         </div>`
             }
         })
+
+    function mens() {
+        fetch('https://fakestoreapi.com/products/')
+            .then(res => res.json())
+
+            .then(json => {
+                console.log(json)
+                for (let index = 0; index < json.length; index++) {
+                    const element = json[index];
+                    if (element.category == "men's clothing") {
+                        document.getElementById("men").innerHTML += `<div class="content">
+                        <div class="image"><img src="${element.image}" alt=""></div>
+                        <div class="category">${element.category}</div>
+                        <div class="title">${element.title}</div>
+                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                        <div class="price">$${element.price}</div>
+                    
+                </div>`
+
+                    }
+                }
+            })
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "block";
+        document.getElementById("women").style.display = "none";
+        document.getElementById("jewelery").style.display = "none";
+
+    }
+
+    function women() {
+        fetch('https://fakestoreapi.com/products/')
+            .then(res => res.json())
+
+            .then(json => {
+                console.log(json)
+                for (let index = 0; index < json.length; index++) {
+                    const element = json[index];
+                    if (element.category == "women's clothing") {
+                        document.getElementById("women").innerHTML += `<div class="content">
+                        <div class="image"><img src="${element.image}" alt=""></div>
+                        <div class="category">${element.category}</div>
+                        <div class="title">${element.title}</div>
+                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                        <div class="price">$${element.price}</div>
+                    
+                </div>`
+
+                    }
+                }
+            })
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "none";
+        document.getElementById("women").style.display = "block";
+        document.getElementById("jewelery").style.display = "none";
+        document.getElementById("electronics").style.display = "none";
+
+    }
+
+    function jewelery() {
+        fetch('https://fakestoreapi.com/products/')
+            .then(res => res.json())
+
+            .then(json => {
+                console.log(json)
+                for (let index = 0; index < json.length; index++) {
+                    const element = json[index];
+                    if (element.category == "jewelery") {
+                        document.getElementById("jewelery").innerHTML += `<div class="content">
+                        <div class="image"><img src="${element.image}" alt=""></div>
+                        <div class="category">${element.category}</div>
+                        <div class="title">${element.title}</div>
+                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                        <div class="price">$${element.price}</div>
+                    
+                </div>`
+
+                    }
+                }
+            })
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "none";
+        document.getElementById("women").style.display = "none";
+        document.getElementById("jewelery").style.display = "block";
+        document.getElementById("electronics").style.display = "none";
+    }
+
+    function electronics() {
+        fetch('https://fakestoreapi.com/products/')
+            .then(res => res.json())
+
+            .then(json => {
+                console.log(json)
+                for (let index = 0; index < json.length; index++) {
+                    const element = json[index];
+                    if (element.category == "electronics") {
+                        document.getElementById("electronics").innerHTML += `<div class="content">
+                        <div class="image"><img src="${element.image}" alt=""></div>
+                        <div class="category">${element.category}</div>
+                        <div class="title">${element.title}</div>
+                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                        <div class="price">$${element.price}</div>
+                    
+                </div>`
+
+                    }
+                }
+            })
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "none";
+        document.getElementById("women").style.display = "none";
+        document.getElementById("jewelery").style.display = "none";
+        document.getElementById("electronics").style.display = "block"
+    }
 
 </script>

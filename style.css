@@ -21,6 +21,7 @@ nav {
     background-color: black;
     padding: 3px 10px;
     width: 100%;
+    z-index: 999;
 } 
 
 nav img {
@@ -190,4 +191,20 @@ nav img {
     width: 100%;
     text-align: center;
     
+}
+
+.men {
+    display: flex;
+}
+
+.cont {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+}
+
+.jewelery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
 }
