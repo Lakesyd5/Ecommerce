@@ -14,7 +14,7 @@
 
 <body>
     <main>
-        <!--  -->
+        <!-- Top Advert  -->
         <div class="advert"><img src="./image mover.gif" alt=""></div>
         <!--  -->
 
@@ -22,7 +22,7 @@
         <nav>
             <img src="./ajebo.png" alt="">
             <button class="search">
-                <input type="text">
+                <input type="text" placeholder="Search products, brands and categories...">
                 <i class="icofont-search"></i>
             </button>
             <button class="account">
@@ -44,15 +44,16 @@
                 <button class="" onclick="jewelery()">Jewelery</button>
                 <button class="" onclick="electronics()">Electronics</button>
             </div>
-            <div id="" class="">
-                <div id="screen" class="screen"></div>
-                <div id="men" class="men"> <p></p></div>
-                <div id="women" class="women"></div>
-                <div id="jewelery" class="jewelery"></div>
-                <div id="electronics" class="electronics"></div>
+            <div id="" class="showAll">
+                <div class="screen" id="screen"></div>
+                <div class="men" id="men"></div>
+                <div class="women" id="women"></div>
+                <div class="jewelery" id="jewelery"></div>
+                <div class="electronics" id="electronics"></div>
             </div>
             <div class="adds"></div>
         </div>
+        <button class="msg">Message Us <i class="icofont-chat"></i></button>
     </main>
 </body>
 
@@ -72,17 +73,29 @@
                 let categories = element.category;
                 console.log(categories);
                 document.getElementById("screen").innerHTML += `<div class="content">
-                <div class="image"><img src="${element.image}" alt=""></div>
-                <div class="category">${element.category}</div>
-                <div class="title">${element.title}</div>
-                <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                <div class="price">$${element.price}</div>
+                <div class="pag">
+                    <div class="image"><img src="${element.image}" alt=""></div>
+                    <div class="category">${element.category}</div>
+                    <div class="title">${element.title}</div>
+                    <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                    <div class="price">$${element.price}</div>
+                    <button class="crt"><i class="icofont-cart"></i></button>
+                </div>
             
         </div>`
             }
         })
 
     function mens() {
+        document.getElementById("men").innerHTML = ""
+
+        document.getElementById("screen").style.display = "none"
+        document.getElementById("men").style.display = "flex"
+        document.getElementById("women").style.display = "none"
+        document.getElementById("jewelery").style.display = "none"
+        document.getElementById("electronics").style.display = "none"
+
+
         fetch('https://fakestoreapi.com/products/')
             .then(res => res.json())
 
@@ -97,20 +110,26 @@
                         <div class="title">${element.title}</div>
                         <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                         <div class="price">$${element.price}</div>
+                        <button class="crt"><i class="icofont-cart"></i></button>
                     
                 </div>`
 
                     }
                 }
             })
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "block";
-        document.getElementById("women").style.display = "none";
-        document.getElementById("jewelery").style.display = "none";
+
 
     }
 
     function women() {
+        document.getElementById("women").innerHTML = ""
+
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "none";
+        document.getElementById("women").style.display = "flex";
+        document.getElementById("jewelery").style.display = "none";
+        document.getElementById("electronics").style.display = "none"
+
         fetch('https://fakestoreapi.com/products/')
             .then(res => res.json())
 
@@ -125,21 +144,26 @@
                         <div class="title">${element.title}</div>
                         <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                         <div class="price">$${element.price}</div>
+                        <button class="crt"><i class="icofont-cart"></i></button>
                     
                 </div>`
 
                     }
                 }
             })
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "none";
-        document.getElementById("women").style.display = "block";
-        document.getElementById("jewelery").style.display = "none";
-        document.getElementById("electronics").style.display = "none";
+
 
     }
 
     function jewelery() {
+        document.getElementById("jewelery").innerHTML = ""
+
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "none";
+        document.getElementById("women").style.display = "none";
+        document.getElementById("jewelery").style.display = "flex";
+        document.getElementById("electronics").style.display = "none"
+
         fetch('https://fakestoreapi.com/products/')
             .then(res => res.json())
 
@@ -154,20 +178,25 @@
                         <div class="title">${element.title}</div>
                         <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                         <div class="price">$${element.price}</div>
+                        <button class="crt"><i class="icofont-cart"></i></button>
                     
                 </div>`
 
                     }
                 }
             })
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "none";
-        document.getElementById("women").style.display = "none";
-        document.getElementById("jewelery").style.display = "block";
-        document.getElementById("electronics").style.display = "none";
+
     }
 
     function electronics() {
+        document.getElementById("electronics").innerHTML = ""
+
+        document.getElementById("screen").style.display = "none";
+        document.getElementById("men").style.display = "none";
+        document.getElementById("women").style.display = "none";
+        document.getElementById("jewelery").style.display = "none";
+        document.getElementById("electronics").style.display = "flex"
+
         fetch('https://fakestoreapi.com/products/')
             .then(res => res.json())
 
@@ -182,17 +211,14 @@
                         <div class="title">${element.title}</div>
                         <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                         <div class="price">$${element.price}</div>
+                        <button class="crt"><i class="icofont-cart"></i></button>
                     
                 </div>`
 
                     }
                 }
             })
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "none";
-        document.getElementById("women").style.display = "none";
-        document.getElementById("jewelery").style.display = "none";
-        document.getElementById("electronics").style.display = "block"
+
     }
 
 </script>

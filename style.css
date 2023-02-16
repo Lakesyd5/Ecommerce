@@ -19,7 +19,7 @@ nav {
     align-items: center;
     justify-content: start;
     background-color: black;
-    padding: 3px 10px;
+    padding: 3px 40px;
     width: 100%;
     z-index: 999;
 } 
@@ -33,8 +33,8 @@ nav img {
    align-items: center;
    justify-content: center; 
    background-color: white;
-   border-radius: 20px;
-   padding: 3px 8px;
+   border-radius: 5px;
+   padding: 7px 8px;
    border: 1.5px solid rgb(93, 6, 42);
    margin-right: 35px;
 }
@@ -58,6 +58,7 @@ nav img {
     border: 1px solid silver;
     padding: 10px 15px;
     margin-right: 20px;
+    margin-left: 30px;
     font-size: 15px;
     font-weight: 700;
     color: white;
@@ -106,10 +107,11 @@ nav img {
     padding: 10px;
     box-shadow: 5px 5px 8px grey;
     background-color: white;
+    transition: 0.35s ease-in-out;
 }
 
 .content:hover {
-    transform: translate(-5px, 10px);
+    transform: translate( 0, -7px);
 }
 
 .content img {
@@ -134,7 +136,7 @@ nav img {
 
 .content .price {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     color: green;
 }
 
@@ -145,12 +147,30 @@ nav img {
 }
 
 .content .rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(173, 109, 20);
     color: white;
     width: fit-content;
     padding: 4px;
     border-radius: 4px;
     font-size: 10px;
+}
+
+.content .rating i {
+    font-size: 13px;
+}
+
+.content .crt {
+    border: none;
+    border-radius: 8px;
+    padding: 3px;
+    background-color: chocolate;
+}
+
+.content .crt i {
+    font-size: 23px;
 }
 
 .screen {
@@ -193,18 +213,52 @@ nav img {
     
 }
 
-.men {
-    display: flex;
+.side-nav button:hover {
+    background-color: rgb(185, 159, 93);
+    color: white;
 }
 
-.cont {
+.men {
     display: flex;
     flex-wrap: wrap;
-    width: 800px;
+    /* width: 800px; */
+    margin-left: 30px;
+}
+
+.women {
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 800px; */
+    margin-left: 30px;
 }
 
 .jewelery {
     display: flex;
     flex-wrap: wrap;
-    width: 800px;
+    /* width: 800px; */
+    margin-left: 30px;
+}
+
+.electronics {
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 800px; */
+    margin-left: 30px;
+}
+
+.msg {
+    position: fixed;
+    bottom: 15px;
+    right: 0px;
+    left: 1210px;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: white;
+    padding: 10px;
+}
+
+.msg:hover {
+    background-color: orangered;
 }
