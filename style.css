@@ -99,7 +99,7 @@ nav img {
     display: block;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid black; */
+    border: none;
     width: fit-content;
     height: fit-content;
     border-radius: 10px;
@@ -108,6 +108,7 @@ nav img {
     box-shadow: 5px 5px 8px grey;
     background-color: white;
     transition: 0.35s ease-in-out;
+    cursor: pointer;
 }
 
 .content:hover {
@@ -167,6 +168,8 @@ nav img {
     border-radius: 8px;
     padding: 3px;
     background-color: chocolate;
+    width: fit-content;
+    height: fit-content;
 }
 
 .content .crt i {
@@ -261,4 +264,8 @@ nav img {
 
 .msg:hover {
     background-color: orangered;
+}
+
+.actions {
+    
 }

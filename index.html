@@ -29,7 +29,7 @@
                 <i class="icofont-user"></i>
                 My Account
             </button>
-            <button class="cart">
+            <button onclick="updateCartDisplay()" class="cart">
                 <i class="icofont-cart"></i>
                 My Cart
             </button>
@@ -55,6 +55,7 @@
         </div>
         <button class="msg">Message Us <i class="icofont-chat"></i></button>
     </main>
+    <script src="./app.js"></script>
 </body>
 
 </html>
@@ -63,6 +64,7 @@
     crossorigin="anonymous"></script>
 
 <script>
+    let cart = {}
     fetch('https://fakestoreapi.com/products/')
         .then(res => res.json())
 
@@ -72,19 +74,33 @@
                 const element = json[index];
                 let categories = element.category;
                 console.log(categories);
-                document.getElementById("screen").innerHTML += `<div class="content">
-                <div class="pag">
+                document.getElementById("screen").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
                     <div class="image"><img src="${element.image}" alt=""></div>
                     <div class="category">${element.category}</div>
                     <div class="title">${element.title}</div>
                     <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                     <div class="price">$${element.price}</div>
-                    <button class="crt"><i class="icofont-cart"></i></button>
+                    <button onclick="handleAddToCart(${element.id})" class="crt"><i class="icofont-cart"></i></button>
                 </div>
-            
-        </div>`
+                `
             }
         })
+    function handleClick(id) {
+        console.log(`Clicked on product with id ${id}`);
+    }
+
+    function handleAddToCart(id){
+        // const productId = element.id;
+        if (cart[id]) {
+            cart[id] += 1;
+        }else {
+            cart[id] = 1;
+        }
+        console.log(`Added product with ID ${id} to cart.`);
+        alert("Product Added to Cart")
+        console.log(cart);
+        
+    }
 
     function mens() {
         document.getElementById("men").innerHTML = ""
@@ -104,7 +120,7 @@
                 for (let index = 0; index < json.length; index++) {
                     const element = json[index];
                     if (element.category == "men's clothing") {
-                        document.getElementById("men").innerHTML += `<div class="content">
+                        document.getElementById("men").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
                         <div class="image"><img src="${element.image}" alt=""></div>
                         <div class="category">${element.category}</div>
                         <div class="title">${element.title}</div>
@@ -138,7 +154,7 @@
                 for (let index = 0; index < json.length; index++) {
                     const element = json[index];
                     if (element.category == "women's clothing") {
-                        document.getElementById("women").innerHTML += `<div class="content">
+                        document.getElementById("women").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
                         <div class="image"><img src="${element.image}" alt=""></div>
                         <div class="category">${element.category}</div>
                         <div class="title">${element.title}</div>
@@ -172,7 +188,7 @@
                 for (let index = 0; index < json.length; index++) {
                     const element = json[index];
                     if (element.category == "jewelery") {
-                        document.getElementById("jewelery").innerHTML += `<div class="content">
+                        document.getElementById("jewelery").innerHTML += `<div class="content" onlcick="handleClick(${element.id})">
                         <div class="image"><img src="${element.image}" alt=""></div>
                         <div class="category">${element.category}</div>
                         <div class="title">${element.title}</div>
@@ -205,7 +221,7 @@
                 for (let index = 0; index < json.length; index++) {
                     const element = json[index];
                     if (element.category == "electronics") {
-                        document.getElementById("electronics").innerHTML += `<div class="content">
+                        document.getElementById("electronics").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
                         <div class="image"><img src="${element.image}" alt=""></div>
                         <div class="category">${element.category}</div>
                         <div class="title">${element.title}</div>
