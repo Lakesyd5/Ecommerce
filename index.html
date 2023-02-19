@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./icofont/icofont.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -29,7 +29,7 @@
                 <i class="icofont-user"></i>
                 My Account
             </button>
-            <button onclick="updateCartDisplay()" class="cart">
+            <button onclick="displayCart()" class="cart">
                 <i class="icofont-cart"></i>
                 My Cart
             </button>
@@ -62,179 +62,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-
-<script>
-    let cart = {}
-    fetch('https://fakestoreapi.com/products/')
-        .then(res => res.json())
-
-        .then(json => {
-            console.log(json)
-            for (let index = 0; index < json.length; index++) {
-                const element = json[index];
-                let categories = element.category;
-                console.log(categories);
-                document.getElementById("screen").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
-                    <div class="image"><img src="${element.image}" alt=""></div>
-                    <div class="category">${element.category}</div>
-                    <div class="title">${element.title}</div>
-                    <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                    <div class="price">$${element.price}</div>
-                    <button onclick="handleAddToCart(${element.id})" class="crt"><i class="icofont-cart"></i></button>
-                </div>
-                `
-            }
-        })
-    function handleClick(id) {
-        console.log(`Clicked on product with id ${id}`);
-    }
-
-    function handleAddToCart(id){
-        // const productId = element.id;
-        if (cart[id]) {
-            cart[id] += 1;
-        }else {
-            cart[id] = 1;
-        }
-        console.log(`Added product with ID ${id} to cart.`);
-        alert("Product Added to Cart")
-        console.log(cart);
-        
-    }
-
-    function mens() {
-        document.getElementById("men").innerHTML = ""
-
-        document.getElementById("screen").style.display = "none"
-        document.getElementById("men").style.display = "flex"
-        document.getElementById("women").style.display = "none"
-        document.getElementById("jewelery").style.display = "none"
-        document.getElementById("electronics").style.display = "none"
-
-
-        fetch('https://fakestoreapi.com/products/')
-            .then(res => res.json())
-
-            .then(json => {
-                console.log(json)
-                for (let index = 0; index < json.length; index++) {
-                    const element = json[index];
-                    if (element.category == "men's clothing") {
-                        document.getElementById("men").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
-                        <div class="image"><img src="${element.image}" alt=""></div>
-                        <div class="category">${element.category}</div>
-                        <div class="title">${element.title}</div>
-                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                        <div class="price">$${element.price}</div>
-                        <button class="crt"><i class="icofont-cart"></i></button>
-                    
-                </div>`
-
-                    }
-                }
-            })
-
-
-    }
-
-    function women() {
-        document.getElementById("women").innerHTML = ""
-
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "none";
-        document.getElementById("women").style.display = "flex";
-        document.getElementById("jewelery").style.display = "none";
-        document.getElementById("electronics").style.display = "none"
-
-        fetch('https://fakestoreapi.com/products/')
-            .then(res => res.json())
-
-            .then(json => {
-                console.log(json)
-                for (let index = 0; index < json.length; index++) {
-                    const element = json[index];
-                    if (element.category == "women's clothing") {
-                        document.getElementById("women").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
-                        <div class="image"><img src="${element.image}" alt=""></div>
-                        <div class="category">${element.category}</div>
-                        <div class="title">${element.title}</div>
-                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                        <div class="price">$${element.price}</div>
-                        <button class="crt"><i class="icofont-cart"></i></button>
-                    
-                </div>`
-
-                    }
-                }
-            })
-
-
-    }
-
-    function jewelery() {
-        document.getElementById("jewelery").innerHTML = ""
-
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "none";
-        document.getElementById("women").style.display = "none";
-        document.getElementById("jewelery").style.display = "flex";
-        document.getElementById("electronics").style.display = "none"
-
-        fetch('https://fakestoreapi.com/products/')
-            .then(res => res.json())
-
-            .then(json => {
-                console.log(json)
-                for (let index = 0; index < json.length; index++) {
-                    const element = json[index];
-                    if (element.category == "jewelery") {
-                        document.getElementById("jewelery").innerHTML += `<div class="content" onlcick="handleClick(${element.id})">
-                        <div class="image"><img src="${element.image}" alt=""></div>
-                        <div class="category">${element.category}</div>
-                        <div class="title">${element.title}</div>
-                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                        <div class="price">$${element.price}</div>
-                        <button class="crt"><i class="icofont-cart"></i></button>
-                    
-                </div>`
-
-                    }
-                }
-            })
-
-    }
-
-    function electronics() {
-        document.getElementById("electronics").innerHTML = ""
-
-        document.getElementById("screen").style.display = "none";
-        document.getElementById("men").style.display = "none";
-        document.getElementById("women").style.display = "none";
-        document.getElementById("jewelery").style.display = "none";
-        document.getElementById("electronics").style.display = "flex"
-
-        fetch('https://fakestoreapi.com/products/')
-            .then(res => res.json())
-
-            .then(json => {
-                console.log(json)
-                for (let index = 0; index < json.length; index++) {
-                    const element = json[index];
-                    if (element.category == "electronics") {
-                        document.getElementById("electronics").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
-                        <div class="image"><img src="${element.image}" alt=""></div>
-                        <div class="category">${element.category}</div>
-                        <div class="title">${element.title}</div>
-                        <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                        <div class="price">$${element.price}</div>
-                        <button class="crt"><i class="icofont-cart"></i></button>
-                    
-                </div>`
-
-                    }
-                }
-            })
-
-    }
-
-</script>
