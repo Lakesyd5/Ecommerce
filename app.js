@@ -1,7 +1,7 @@
-let cart = {};
-let json = [];
 
-
+let cartItemDisplay = document.getElementById("cartItemDisplay");
+// let storedCart = JSON.parse(localStorage.getItem("cart"));
+// let cart = [];
 fetch('https://fakestoreapi.com/products/')
     .then(res => res.json())
 
@@ -18,67 +18,54 @@ fetch('https://fakestoreapi.com/products/')
                 <div class="title">${element.title}</div>
                 <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                 <div class="price">$${element.price}</div>
-                <button onclick="handleAddToCart(${element.id})" class="crt"><i class="icofont-cart"></i></button>
+                <button onclick="handleClick(${element.id})" class="crt"><i class="icofont-cart"></i></button>
             </div>
             `
         }
     })
-function handleClick(id) {
-    // console.log(`Clicked on product with id ${id}`);
-}
-
-function handleAddToCart(id) {
-    // const productId = element.id;
-    if (cart[id]) {
-        cart[id] += 1;
-    } else {
-        cart[id] = 1;
-    }
-    console.log(`Added product with ID ${id} to cart.`);
-    alert("Product Added to Cart")
-    // console.log(cart);
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-}
-
-function displayCart() {
-    let cartContent = document.getElementById("cartShow");
-    let storedCart = JSON.parse(localStorage.getItem("cart"));
-
-    if (!cartContent) {
-        console.log("Error: Element with id 'carting' not found");
-        return;
-    }
-
-    if (storedCart) {
-        let cartHTML = "";
-        for (let id in storedCart) {
-            const product = json.find(p => p.id == id);
-            if (product) {
-                cartHTML += `
-           <div class="cart-item">
-            <div class="item-name">${product.title}</div>
-            <div class="">${product.image}</div>
-            <div class="">${cart[id]}</div>
-            <div class="item-price">$${product.price}</div>
-            </div>
-           `
-            }
-
-        }
-        cartContent.innerHTML = cartHTML;
-
-    } else {
-        cartContent .innerHTML = "<p>Your cart is empty.</p>";
-    }
-    document.getElementById("screen").style.display = "none";
-    document.getElementById("men").style.display = "none";
-    document.getElementById("women").style.display = "none";
-    document.getElementById("jewelery").style.display = "none";
-    document.getElementById("electronics").style.display = "none";
-    document.getElementById("carting").style.display = "block";
-
     
+    
+function handleClick(id) {
+    let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log(storedCart);
+    const product = json.find((p) => p.id === id);
+    storedCart.push(product)
+    
+    alert(`Added ${product.title} to the cart!`);
+    console.log(storedCart);
+
+    localStorage.setItem("cart", JSON.stringify(storedCart));
+}
+
+function viewCart() {
+    storedCart = JSON.parse(localStorage.getItem("cart"));
+
+  // If the cart is empty, display a message to the user
+  if (!storedCart || storedCart.length == 0) {
+    cartItemDisplay.innerHTML = `<b>YOUR CART IS EMPTY</b>`
+  }else {
+    cartItemDisplay.innerHTML = "";
+    for (let index = 0; index < storedCart.length; index++) {
+        const element = storedCart[index];
+        cartItemDisplay.innerHTML += `
+           <div class="modal-inner">
+             <img src="${element.image}" alt="">
+             <div class="title">${element.title}</div>
+             <div class="price">$${element.price}</div>
+             <button onclick="removeItem(${index})" class="del"><i class="icofont-ui-delete"></i></button>
+           </div>
+        `
+        
+    }
+  } 
+}
+
+
+function removeItem(index) {
+    storedCart.splice(index, 1);
+    console.log(storedCart);
+    localStorage.setItem("cart", JSON.stringify(storedCart));
+    viewCart();
 }
 
 function mens() {
@@ -215,3 +202,64 @@ function electronics() {
         })
 
 }
+
+
+
+
+// let cart = {};
+// let json = [];
+
+// function handleClick(id) {
+//     // console.log(`Clicked on product with id ${id}`);
+// }
+
+// function handleAddToCart(id) {
+//     // const productId = element.id;
+//     if (!cart) {
+//         cart = {};
+//     }
+//     if (cart[id]) {
+//         cart[id] += 1;
+//     } else {
+//         cart[id] = 1;
+//     }
+//     console.log(`Added product with ID ${id} to cart.`);
+//     alert("Product Added to Cart")
+//     // console.log(cart);
+//     localStorage.setItem("cart", JSON.stringify(cart));
+
+// }
+
+// function displayCart() {
+//     let cartContent = document.getElementById("cartShow");
+//     let storedCart = JSON.parse(localStorage.getItem("cart"));
+
+//     if (!cartContent) {
+//         console.log("Error: Element with id 'cartShow' not found");
+//         return;
+//     }
+
+//     if (storedCart) {
+//         cartContent.innerHTML = "";
+//         for (let id in storedCart) {
+//             const product = json.find(p => p.id == id);
+//             if (product) {
+//                 cartContent.innerHTML += `
+//            <div class="cart-item">
+//             <div class="item-name">${product.title}</div>
+//             <div class="">${product.image}</div>
+//             <div class="">${cart[id]}</div>
+//             <div class="item-price">$${product.price}</div>
+//             </div>
+//            `
+//             }
+
+//         }
+
+//     } else {
+//         cartContent.innerHTML = "<p>Your cart is empty.</p>";
+//     }
+
+
+
+// }
