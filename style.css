@@ -297,10 +297,43 @@ nav img {
 
 .modal-inner .del {
     margin-left: 150px;
-    font-size: 30px;
-    color: red;
+    background-color: red;
+    color: white;
     font-weight: 700;
     border: none;
-    outline: none;
-    background: none;
+    
+    padding: 8px;
+    border-radius: 3px;
+}
+.chkout {
+    padding: 4px 10px;
+    color: white;
+    background-color: rgb(52, 158, 52);
+    border: none;
+    border-radius: 4px;
+    margin: 20px;
+}
+
+.chec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(171, 133, 37);
+}
+
+.modal-inner .qty {
+    display: flex;
+    align-items: center;
+}
+
+.qty button {
+    font-size: 28px;
+    font-weight: 700;
+    padding: 0 5px;
+    background-color: orangered;
+}
+
+.qty span {
+    border-radius: 1px solid grey;
+    padding: 10px;
 }

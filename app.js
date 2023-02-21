@@ -12,61 +12,19 @@ fetch('https://fakestoreapi.com/products/')
             const element = json[index];
             let categories = element.category;
             console.log(categories);
-            document.getElementById("screen").innerHTML += `<div class="content" onclick="handleClick(${element.id})">
+            document.getElementById("screen").innerHTML += `<div class="content" >
+                <div class="main-frame" onclick="handleClick(${element.id})">
                 <div class="image"><img src="${element.image}" alt=""></div>
                 <div class="category">${element.category}</div>
                 <div class="title">${element.title}</div>
                 <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
                 <div class="price">$${element.price}</div>
+                </div>
                 <button onclick="handleClick(${element.id})" class="crt"><i class="icofont-cart"></i></button>
             </div>
             `
         }
     })
-    
-    
-function handleClick(id) {
-    let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log(storedCart);
-    const product = json.find((p) => p.id === id);
-    storedCart.push(product)
-    
-    alert(`Added ${product.title} to the cart!`);
-    console.log(storedCart);
-
-    localStorage.setItem("cart", JSON.stringify(storedCart));
-}
-
-function viewCart() {
-    storedCart = JSON.parse(localStorage.getItem("cart"));
-
-  // If the cart is empty, display a message to the user
-  if (!storedCart || storedCart.length == 0) {
-    cartItemDisplay.innerHTML = `<b>YOUR CART IS EMPTY</b>`
-  }else {
-    cartItemDisplay.innerHTML = "";
-    for (let index = 0; index < storedCart.length; index++) {
-        const element = storedCart[index];
-        cartItemDisplay.innerHTML += `
-           <div class="modal-inner">
-             <img src="${element.image}" alt="">
-             <div class="title">${element.title}</div>
-             <div class="price">$${element.price}</div>
-             <button onclick="removeItem(${index})" class="del"><i class="icofont-ui-delete"></i></button>
-           </div>
-        `
-        
-    }
-  } 
-}
-
-
-function removeItem(index) {
-    storedCart.splice(index, 1);
-    console.log(storedCart);
-    localStorage.setItem("cart", JSON.stringify(storedCart));
-    viewCart();
-}
 
 function mens() {
     document.getElementById("men").innerHTML = ""
@@ -204,62 +162,71 @@ function electronics() {
 }
 
 
+function handleClick(id) {
+    let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    // console.log(storedCart);
+    const product = json.find((p) => p.id === id);
+    storedCart.push(product)
+
+    alert(`Added ${product.title} to the cart!`);
+    console.log(storedCart);
+
+    localStorage.setItem("cart", JSON.stringify(storedCart));
+}
+
+function viewCart() {
+    storedCart = JSON.parse(localStorage.getItem("cart"));
+    let totalPriceDisplay = document.getElementById("total");
+    let totalprice = 0;
+
+    // If the cart is empty, display a message to the user
+    if (!storedCart || storedCart.length == 0) {
+        cartItemDisplay.innerHTML = `<b>YOUR CART IS EMPTY</b>`
+    } else {
+        cartItemDisplay.innerHTML = "";
+        for (let index = 0; index < storedCart.length; index++) {
+            const element = storedCart[index];
+            cartItemDisplay.innerHTML += `
+           <div class="modal-inner">
+             <img src="${element.image}" alt="">
+             <div class="title">${element.title}</div>
+             <div class="qty">
+                <button onclick="decreaseQuantity(${index})">-</button>
+                <span id="item-quantity-${index}">1</span>
+                <button onclick="increaseQuantity(${index})">+</button>
+             </div>
+             <div class="price">$${element.price}</div>
+             <button onclick="removeItem(${index})" class="del">Remove</i></button>
+           </div>
+        `
+            totalprice += element.price;
+        }
+        totalPriceDisplay.innerHTML = `<b>Total price:</b> $${totalprice.toFixed(2)}`
+    }
+}
 
 
-// let cart = {};
-// let json = [];
+function removeItem(index) {
+    storedCart.splice(index, 1);
+    console.log(storedCart);
+    localStorage.setItem("cart", JSON.stringify(storedCart));
+    viewCart();
+}
 
-// function handleClick(id) {
-//     // console.log(`Clicked on product with id ${id}`);
-// }
+function increaseQuantity(index) {
+    if (quantity = 1) {
+        alert("Minimum Quantity reached")
+    }
+    const itemQuantity = document.getElementById(`item-quantity-${index}`);
+    let quantity = parseInt(itemQuantity.innerHTML);
+    quantity += 1;
+    itemQuantity.innerHTML = quantity;
+}
 
-// function handleAddToCart(id) {
-//     // const productId = element.id;
-//     if (!cart) {
-//         cart = {};
-//     }
-//     if (cart[id]) {
-//         cart[id] += 1;
-//     } else {
-//         cart[id] = 1;
-//     }
-//     console.log(`Added product with ID ${id} to cart.`);
-//     alert("Product Added to Cart")
-//     // console.log(cart);
-//     localStorage.setItem("cart", JSON.stringify(cart));
+function decreaseQuantity(index) {
+    const itemQuantity = document.getElementById(`item-quantity-${index}`);
+    let quantity = parseInt(itemQuantity.innerHTML);
+    quantity -= 1;
+    itemQuantity.innerHTML = quantity;
+}
 
-// }
-
-// function displayCart() {
-//     let cartContent = document.getElementById("cartShow");
-//     let storedCart = JSON.parse(localStorage.getItem("cart"));
-
-//     if (!cartContent) {
-//         console.log("Error: Element with id 'cartShow' not found");
-//         return;
-//     }
-
-//     if (storedCart) {
-//         cartContent.innerHTML = "";
-//         for (let id in storedCart) {
-//             const product = json.find(p => p.id == id);
-//             if (product) {
-//                 cartContent.innerHTML += `
-//            <div class="cart-item">
-//             <div class="item-name">${product.title}</div>
-//             <div class="">${product.image}</div>
-//             <div class="">${cart[id]}</div>
-//             <div class="item-price">$${product.price}</div>
-//             </div>
-//            `
-//             }
-
-//         }
-
-//     } else {
-//         cartContent.innerHTML = "<p>Your cart is empty.</p>";
-//     }
-
-
-
-// }
