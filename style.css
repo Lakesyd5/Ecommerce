@@ -58,7 +58,7 @@ nav img {
     border: 1px solid silver;
     padding: 10px 15px;
     margin-right: 20px;
-    margin-left: 30px;
+    margin-left: 150px;
     font-size: 15px;
     font-weight: 700;
     color: white;
@@ -115,6 +115,12 @@ nav img {
     transform: translate( 0, -7px);
 }
 
+.content .main-frame {
+    border: 2px solid rgb(203, 76, 30);
+    border-radius: 10px;
+    padding: 5px;
+}
+
 .content img {
     height: 120px;
     width: 95px;
@@ -135,16 +141,26 @@ nav img {
     font-weight: 700;
 }
 
+/* .content .split {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
 .content .price {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     color: green;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .content .category {
     color: gray;
     font-size: 12px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 3px;
 }
 
 .content .rating {
@@ -157,6 +173,7 @@ nav img {
     padding: 4px;
     border-radius: 4px;
     font-size: 10px;
+    margin-top: 8px;
 }
 
 .content .rating i {
@@ -168,8 +185,9 @@ nav img {
     border-radius: 8px;
     padding: 3px;
     background-color: chocolate;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
+    margin-top: 10px;
 }
 
 .content .crt i {
@@ -195,7 +213,7 @@ nav img {
     width: fit-content;
     height: fit-content;
     padding: 10px;
-    background-color: rgb(162, 157, 157);;
+    background-color: rgb(232, 102, 9);
     border-radius: 10px;
     box-shadow: 5px 5px 8px grey;
 }
@@ -251,9 +269,9 @@ nav img {
 
 .msg {
     position: fixed;
-    bottom: 15px;
+    bottom: 20px;
     right: 0px;
-    left: 1350px;
+    left: 1200px;
     width: fit-content;
     border: none;
     border-radius: 5px;
@@ -310,8 +328,9 @@ nav img {
     color: white;
     background-color: rgb(52, 158, 52);
     border: none;
-    border-radius: 4px;
+    border-radius: 7px;
     margin: 20px;
+    font-size: 20px;
 }
 
 .chec {
@@ -327,13 +346,35 @@ nav img {
 }
 
 .qty button {
-    font-size: 28px;
-    font-weight: 700;
-    padding: 0 5px;
+    padding: 5px;
     background-color: orangered;
+    border: none;
+    border-radius: 5px;
 }
 
 .qty span {
     border-radius: 1px solid grey;
     padding: 10px;
+}
+
+.contai {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contai h5 {
+    color: white;
+}
+
+.contai .total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid orange;
+    border-radius: 5px;
+    /* padding: 7px; */
+    width: 80px;
+    height: 30px;
+    margin-left: 10px;
 }

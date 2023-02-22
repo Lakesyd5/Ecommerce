@@ -1,4 +1,3 @@
-
 let cartItemDisplay = document.getElementById("cartItemDisplay");
 // let storedCart = JSON.parse(localStorage.getItem("cart"));
 // let cart = [];
@@ -14,13 +13,13 @@ fetch('https://fakestoreapi.com/products/')
             console.log(categories);
             document.getElementById("screen").innerHTML += `<div class="content" >
                 <div class="main-frame" onclick="handleClick(${element.id})">
-                <div class="image"><img src="${element.image}" alt=""></div>
-                <div class="category">${element.category}</div>
-                <div class="title">${element.title}</div>
-                <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
-                <div class="price">$${element.price}</div>
-                </div>
-                <button onclick="handleClick(${element.id})" class="crt"><i class="icofont-cart"></i></button>
+                  <div class="image"><img src="${element.image}" alt=""></div>
+                  <div class="category">${element.category}</div>
+                  <div class="title">${element.title}</div>
+                  <div class="rating"><i class="icofont-ui-rating"></i>${element.rating.rate}</div>
+                  <div class="price">$${element.price}</div>
+                </div>    
+                <button onclick="handleClick(${element.id})" class="crt"><i class="icofont-cart"></i></button>           
             </div>
             `
         }
@@ -34,7 +33,6 @@ function mens() {
     document.getElementById("women").style.display = "none"
     document.getElementById("jewelery").style.display = "none"
     document.getElementById("electronics").style.display = "none"
-
 
     fetch('https://fakestoreapi.com/products/')
         .then(res => res.json())
@@ -172,12 +170,17 @@ function handleClick(id) {
     console.log(storedCart);
 
     localStorage.setItem("cart", JSON.stringify(storedCart));
+
+    //Update the badge count
+    let badge = document.getElementById("badge");
+    badge.textContent = storedCart.length.toString();
 }
 
 function viewCart() {
     storedCart = JSON.parse(localStorage.getItem("cart"));
     let totalPriceDisplay = document.getElementById("total");
     let totalprice = 0;
+
 
     // If the cart is empty, display a message to the user
     if (!storedCart || storedCart.length == 0) {
@@ -201,7 +204,7 @@ function viewCart() {
         `
             totalprice += element.price;
         }
-        totalPriceDisplay.innerHTML = `<b>Total price:</b> $${totalprice.toFixed(2)}`
+        totalPriceDisplay.innerHTML = `$${totalprice.toFixed(2)}`
     }
 }
 
@@ -211,12 +214,13 @@ function removeItem(index) {
     console.log(storedCart);
     localStorage.setItem("cart", JSON.stringify(storedCart));
     viewCart();
+
+    //Update the badge count
+    let badge = document.getElementById("badge");
+    badge.textContent = storedCart.length.toString();
 }
 
 function increaseQuantity(index) {
-    if (quantity = 1) {
-        alert("Minimum Quantity reached")
-    }
     const itemQuantity = document.getElementById(`item-quantity-${index}`);
     let quantity = parseInt(itemQuantity.innerHTML);
     quantity += 1;
@@ -230,3 +234,10 @@ function decreaseQuantity(index) {
     itemQuantity.innerHTML = quantity;
 }
 
+let badge = document.getElementById("badge");
+storedCart = JSON.parse(localStorage.getItem("cart"));
+if (!storedCart || storedCart.length == 0) {
+    badge.textContent = '0';
+} else {
+    badge.textContent = storedCart.length.toString();
+}

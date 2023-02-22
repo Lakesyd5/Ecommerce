@@ -29,9 +29,12 @@
                 <i class="icofont-user"></i>
                 My Account
             </button>
-            <button onclick="viewCart()" class="cart" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button onclick="viewCart()" type="button" class="cart position-relative" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
                 <i class="icofont-cart"></i>
                 My Cart
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="badge"></span>
             </button>
         </nav>
         <!-- Modal -->
@@ -46,9 +49,12 @@
 
                     </div>
                     <div class="chec">
-                        <button class="chkout">CheckOut</button>
-                        <div id="total"></div>
-                      </div>
+                        <button class="chkout">Order</button>
+                        <div class="contai">
+                            <h5>Total Price:</h5>
+                            <div class="total" id="total"></div>
+                        </div>
+                    </div>
                     <!-- <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
@@ -57,7 +63,7 @@
             </div>
         </div>
         <!-- End of Modal -->
-        
+
 
         <!--  -->
 
@@ -78,7 +84,27 @@
             </div>
             <div class="adds"></div>
         </div>
-        <button class="msg">Message Us <i class="icofont-chat"></i></button>
+
+        <!-- Message Us Button -->
+        <button class="msg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight">
+            Message Us <i class="icofont-chat"></i>
+            <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
+        </button>
+        <!--  -->
+
+        <!-- Message Us Body -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Chat With Our Representatives</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                ...
+            </div>
+        </div>
+        <!--  -->
     </main>
     <script src="./app.js"></script>
 </body>
