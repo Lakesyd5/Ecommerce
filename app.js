@@ -159,7 +159,7 @@ function electronics() {
 
 }
 
-
+// Add items to cart
 function handleClick(id) {
     let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     // console.log(storedCart);
@@ -174,10 +174,15 @@ function handleClick(id) {
     //Update the badge count
     let badge = document.getElementById("badge");
     badge.textContent = storedCart.length.toString();
+    calculateTotalPrice();
+
 }
 
+// View items added to Cart
 function viewCart() {
     storedCart = JSON.parse(localStorage.getItem("cart"));
+    let totalPriceDisplay = document.getElementById("total");
+    let totalPrice = 0;
 
     // If the cart is empty, display a message to the user
     if (!storedCart || storedCart.length == 0) {
@@ -199,22 +204,40 @@ function viewCart() {
              <button onclick="removeItem(${index})" class="del">Remove</i></button>
            </div>
         `
+            totalPrice += element.price;
         }
-        
+        totalPriceDisplay.innerHTML = `$${totalPrice.toFixed(2)}`
     }
+    
 }
 
 // Total
-let totalDisplay = document.getElementById("total");
 let totalPrice = 0;
-storedCart = JSON.parse(localStorage.getItem("cart"))
-storedCart.forEach(element => {
-    totalPrice += element.price;
-    totalDisplay.innerHTML = `$${totalPrice.toFixed(2)}`
-});
+function calculateTotalPrice() {
+    totalPrice = 0;
+    let totalDisplay = document.getElementById("total");
+    storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart && storedCart.length > 0) {
+        storedCart.forEach(element => {
+            totalPrice += element.price
+        });
+    }
+    totalDisplay.innerHTML = `$${totalPrice.toFixed(2)}`;
+}
+
+// let totalDisplay = document.getElementById("total");
+// let totalPrice = 0;
+// function calculateTotalPrice() {
+//     storedCart = JSON.parse(localStorage.getItem("cart"))
+//     storedCart.forEach(element => {
+//         totalPrice += element.price;
+//         totalDisplay.innerHTML = `$${totalPrice.toFixed(2)}`
+//     });
+// }
 
 
 
+// Remove Item from Cart
 function removeItem(index) {
     storedCart.splice(index, 1);
     console.log(storedCart);
@@ -224,8 +247,10 @@ function removeItem(index) {
     //Update the badge count
     let badge = document.getElementById("badge");
     badge.textContent = storedCart.length.toString();
+    calculateTotalPrice();
 }
 
+// Increase item Quantity in Cart
 function increaseQuantity(index) {
     const itemQuantity = document.getElementById(`item-quantity-${index}`);
     let quantity = parseInt(itemQuantity.innerHTML);
@@ -233,6 +258,7 @@ function increaseQuantity(index) {
     itemQuantity.innerHTML = quantity;
 }
 
+// Reduce item Quantity in Cart
 function decreaseQuantity(index) {
     const itemQuantity = document.getElementById(`item-quantity-${index}`);
     let quantity = parseInt(itemQuantity.innerHTML);
@@ -240,6 +266,7 @@ function decreaseQuantity(index) {
     itemQuantity.innerHTML = quantity;
 }
 
+// Cart Badge
 let badge = document.getElementById("badge");
 storedCart = JSON.parse(localStorage.getItem("cart"));
 if (!storedCart || storedCart.length == 0) {
@@ -248,6 +275,7 @@ if (!storedCart || storedCart.length == 0) {
     badge.textContent = storedCart.length.toString();
 }
 
+// Payment Method
 function makePayment() {
     FlutterwaveCheckout({
         public_key: "FLWPUBK_TEST-0c58230ed063cb8f5f84cfcd0050be7d-X",

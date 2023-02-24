@@ -297,6 +297,7 @@ nav img {
 .modal-inner img {
     width: 90px;
     height: 70px;
+    margin-left: 25px;
 }
 
 .modal-inner .title {
@@ -343,6 +344,7 @@ nav img {
 .modal-inner .qty {
     display: flex;
     align-items: center;
+    margin-left: 20px;
 }
 
 .qty button {
