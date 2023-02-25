@@ -12,7 +12,7 @@ fetch('https://fakestoreapi.com/products/')
             let categories = element.category;
             console.log(categories);
             document.getElementById("screen").innerHTML += `<div class="content" >
-                <div class="main-frame" onclick="handleClick(${element.id})">
+                <div class="main-frame" onclick="see(${element.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                   <div class="image"><img src="${element.image}" alt=""></div>
                   <div class="category">${element.category}</div>
                   <div class="title">${element.title}</div>
@@ -25,6 +25,7 @@ fetch('https://fakestoreapi.com/products/')
         }
     })
 
+// Mens Category  
 function mens() {
     document.getElementById("men").innerHTML = ""
 
@@ -59,6 +60,7 @@ function mens() {
 
 }
 
+// Womens Category 
 function women() {
     document.getElementById("women").innerHTML = ""
 
@@ -93,6 +95,7 @@ function women() {
 
 }
 
+// Jewelery Category
 function jewelery() {
     document.getElementById("jewelery").innerHTML = ""
 
@@ -126,6 +129,7 @@ function jewelery() {
 
 }
 
+// Electronics Category
 function electronics() {
     document.getElementById("electronics").innerHTML = ""
 
@@ -178,6 +182,38 @@ function handleClick(id) {
 
 }
 
+function see(id) {
+    // let storedCart = JSON.parse(localStorage.getItem("cart"));
+    let seeIte =document.getElementById("see");
+
+    const element = json.find((p) => p.id === id);
+
+    seeIte.innerHTML = `<div class="see-more">
+            <img src="${element.image}" alt="">
+            <div class="title">${element.title}</div>
+            <div class="desc">${element.description}</div>
+            <div class="price">$${element.price}</div>
+        </div>`
+}
+
+// function send(id) {
+//     let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+//     // console.log(storedCart);
+//     const product = json.find((p) => p.id === id);
+//     storedCart.push(product)
+
+//     alert(`Added ${product.title} to the cart!`);
+//     console.log(storedCart);
+
+//     localStorage.setItem("cart", JSON.stringify(storedCart));
+
+//     //Update the badge count
+//     let badge = document.getElementById("badge");
+//     badge.textContent = storedCart.length.toString();
+//     calculateTotalPrice();
+
+// }
+
 // View items added to Cart
 function viewCart() {
     storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -224,18 +260,6 @@ function calculateTotalPrice() {
     }
     totalDisplay.innerHTML = `$${totalPrice.toFixed(2)}`;
 }
-
-// let totalDisplay = document.getElementById("total");
-// let totalPrice = 0;
-// function calculateTotalPrice() {
-//     storedCart = JSON.parse(localStorage.getItem("cart"))
-//     storedCart.forEach(element => {
-//         totalPrice += element.price;
-//         totalDisplay.innerHTML = `$${totalPrice.toFixed(2)}`
-//     });
-// }
-
-
 
 // Remove Item from Cart
 function removeItem(index) {
