@@ -25,9 +25,14 @@
                 <input type="text" placeholder="Search products, brands and categories...">
                 <i class="icofont-search"></i>
             </button>
-            <button class="account">
+            <button class="account" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="icofont-user"></i>
                 My Account
+                <ul class="dropdown-menu" style="background-color: rgba(255, 166, 0, 0.95);">
+                    <li><a class="dropdown-item" href="#">Sign In</a></li>
+                    <li><a class="dropdown-item" href="#">Sign Up</a></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                  </ul>
             </button>
             <button onclick="viewCart()" type="button" class="cart position-relative" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">

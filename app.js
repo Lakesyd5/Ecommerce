@@ -196,35 +196,36 @@ function see(id) {
         </div>`
 }
 
-// function send(id) {
-//     let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-//     // console.log(storedCart);
-//     const product = json.find((p) => p.id === id);
-//     storedCart.push(product)
+function send(id) {
+    let storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    // console.log(storedCart);
+    const product = json.find((p) => p.id === id);
+    storedCart.push(product)
 
-//     alert(`Added ${product.title} to the cart!`);
-//     console.log(storedCart);
+    alert(`Added ${product.title} to the cart!`);
+    console.log(storedCart);
 
-//     localStorage.setItem("cart", JSON.stringify(storedCart));
+    localStorage.setItem("cart", JSON.stringify(storedCart));
 
-//     //Update the badge count
-//     let badge = document.getElementById("badge");
-//     badge.textContent = storedCart.length.toString();
-//     calculateTotalPrice();
+    //Update the badge count
+    let badge = document.getElementById("badge");
+    badge.textContent = storedCart.length.toString();
+    calculateTotalPrice();
 
-// }
+}
 
 // View items added to Cart
 function viewCart() {
     storedCart = JSON.parse(localStorage.getItem("cart"));
     let totalPriceDisplay = document.getElementById("total");
     let totalPrice = 0;
+    cartItemDisplay.innerHTML = "";
 
     // If the cart is empty, display a message to the user
     if (!storedCart || storedCart.length == 0) {
         cartItemDisplay.innerHTML = `<b>YOUR CART IS EMPTY</b>`
     } else {
-        cartItemDisplay.innerHTML = "";
+        
         for (let index = 0; index < storedCart.length; index++) {
             const element = storedCart[index];
             cartItemDisplay.innerHTML += `
@@ -240,9 +241,9 @@ function viewCart() {
              <button onclick="removeItem(${index})" class="del">Remove</i></button>
            </div>
         `
-            totalPrice += element.price;
+            // totalPrice += element.price;
         }
-        totalPriceDisplay.innerHTML = `$${totalPrice.toFixed(2)}`
+        // totalPriceDisplay.innerHTML = `$${totalPrice.toFixed(2)}`
     }
     
 }
